@@ -31,11 +31,11 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.http.converter.obm.MarshallingHttpMessageConverter;
-import org.springframework.http.converter.obm.support.DebugClientHttpRequestInterceptor;
 import org.springframework.obm.Marshaller;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -154,7 +154,7 @@ public class RestIntegrationTestUtils {
         public RestTemplate restTemplate() {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.setMessageConverters(Arrays.<HttpMessageConverter<?>>asList(messageConverter()));
-            restTemplate.setInterceptors(new ClientHttpRequestInterceptor[]{new DebugClientHttpRequestInterceptor(getMediaType())});
+            restTemplate.setInterceptors(new ArrayList<ClientHttpRequestInterceptor>());
             return restTemplate;
         }
     }
